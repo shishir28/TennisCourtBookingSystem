@@ -13,10 +13,7 @@ export class TennisCourtService {
   getTennisCourts(): Observable<TennisCourt[]> {
     return this.http
       .get<TennisCourt[]>(environment.api.baseUrl + '/api/tenniscourt')
-      .pipe(
-        // tap((data) => console.log('All: ', JSON.stringify(data))),
-        catchError(this.handleError)
-      );
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {

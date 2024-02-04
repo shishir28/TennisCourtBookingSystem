@@ -1,18 +1,18 @@
 export interface Booking {
-	bookingId: number;
-	userId: number;
+	bookingId: string;
+	userId: string;
 	startTime: string;
 	endTime: string;
 	date: string;
 }
 
 export interface Availability {
-	[day: string]: string[];
+	[day: string]: Date[];
 }
 
 export interface TennisCourt {
-	courtId: number;
+	courtId: string;
 	courtName: string;
 	availability: Availability;
-	bookedSlots: Booking[];
+	bookedSlots?: Booking[];
 }

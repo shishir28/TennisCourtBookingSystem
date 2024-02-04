@@ -1,6 +1,6 @@
 import { CommonModule, NgForOf } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { TennisCourt } from '../models/models';
+import { TennisCourt, AvailabilityViewModel } from '../models/models';
 import {
   MatCard,
   MatCardHeader,
@@ -35,14 +35,31 @@ export class TennisCourtComponent {
   @Input()
   court!: TennisCourt;
 
-  getDaysAndSlots(): { key: string; values: string[] }[] {
+  getDaysAndSlots(): { key: string; values: AvailabilityViewModel[] }[] {
     return Object.keys(this.court.availability).map((key) => ({
       key,
-      values: this.court.availability[key],
+      values: this.court.availability[key].map((x) =>
+        this.transformDate(new Date(x))
+      ),
     }));
   }
-  tileClicked(tileNumber: any): void {
-    alert(`Tile ${tileNumber} clicked!`);
-    // Add your custom logic here
+
+  transformDate(dateValue: Date): AvailabilityViewModel {
+    const epochTimestampInSeconds = Math.floor(dateValue.getTime() / 1000);
+    // Get hours and minutes
+    const hours = dateValue.getHours();
+    const minutes = dateValue.getMinutes();
+    const timeInString = `${hours < 10 ? '0' + hours : hours}:${
+      minutes < 10 ? '0' + minutes : minutes
+    }`;
+    return {
+      epochTimestampInSeconds: epochTimestampInSeconds,
+      timeInString: timeInString,
+    };
+  }
+
+  tileClicked(courtId: string, hourSlot: number): void {
+    alert(` Tile ${courtId}  ${hourSlot} clicked!`);
+    // we need to determine and send respective details to strip for booking
   }
 }

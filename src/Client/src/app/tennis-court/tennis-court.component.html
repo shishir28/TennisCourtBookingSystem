@@ -12,8 +12,8 @@
           <mat-list-item class='internalMatGrid'>
             <mat-grid-list cols="16" rowHeight="1:1">
               <mat-grid-tile class="matGridTile" *ngFor="let value of daySchedule.values"
-                (click)="tileClicked(value)">{{
-                value}}</mat-grid-tile>
+                (click)="tileClicked(court.courtId,value.epochTimestampInSeconds)">{{
+                value.timeInString}}</mat-grid-tile>
             </mat-grid-list>
           </mat-list-item>
         </mat-list>

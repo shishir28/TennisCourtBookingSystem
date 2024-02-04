@@ -10,16 +10,15 @@ export class TennisCourtService {
 
 	async getAllTennisCourts(): Promise<TennisCourt[]> {
 		let promise = new Promise<TennisCourt[]>(
-			(resolve: Function, reject: Function) => {
-				return this.tennisCourtRepository
-					.ListAllTennisCourts()
-					.then((books: TennisCourt[]) => {
-						resolve(books);
-					})
-					.catch((error: Error) => {
-						// logger.error(error.message);
-						reject(error);
-					});
+			async (resolve: Function, reject: Function) => {
+				try {
+					const tennisCourts =
+						await this.tennisCourtRepository.ListAllTennisCourts();
+					resolve(tennisCourts);
+				} catch (error) {
+					logger.error(error.message);
+					reject(error);
+				}
 			}
 		);
 		return promise;
