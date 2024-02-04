@@ -1,0 +1,32 @@
+<mat-card class="card">
+  <mat-card-header class="card-header">
+    <mat-card-title>{{ court.courtName }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-subtitle>Available Hours:</mat-card-subtitle>
+    <mat-grid-list cols="1" rowHeight="100px">
+      <mat-grid-tile class="matGridTileContent" *ngFor="let daySchedule of getDaysAndSlots()">
+        <mat-list class='internalMatGrid'>
+          <mat-list-item>{{ daySchedule.key }}</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item class='internalMatGrid'>
+            <mat-grid-list cols="16" rowHeight="1:1">
+              <mat-grid-tile class="matGridTile" *ngFor="let value of daySchedule.values"
+                (click)="tileClicked(value)">{{
+                value}}</mat-grid-tile>
+            </mat-grid-list>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <!-- <h5 class="card-title">Booked Slots:</h5>
+    <ul *ngIf="court.bookedSlots.length > 0">
+      <li *ngFor="let slot of court.bookedSlots">
+        {{ slot.startTime }} - {{ slot.endTime }} on {{ slot.date }} by User {{ slot.userId }}
+      </li>
+    </ul> -->
+    <!-- <p *ngIf="court.bookedSlots.length === 0">No booked slots.</p> -->
+  </mat-card-content>
+
+</mat-card>

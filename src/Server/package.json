@@ -1,0 +1,39 @@
+{
+	"name": "tennis-court-booking-api-server",
+	"version": "1.0.0",
+	"description": "Backend API for Tennis Court booking",
+	"main": "main.js",
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {
+		"clean": "rimraf dist",
+		"start:local": "nodemon --config nodemon.json app/main.ts",
+		"build": "tsc  && npm run copy-files",
+		"start": "node dist/main.js",
+		"server": "run-s clean copy start:local",
+		"copy-files": "copyfiles -u 1 public/**/*.json dist/public/"
+	},
+	"author": "Shishir Mishra",
+	"license": "ISC",
+	"dependencies": {
+		"@google-cloud/firestore": "^7.3.0",
+		"@types/express": "^4.17.21",
+		"body-parser": "^1.20.2",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.1",
+		"express": "^4.18.2",
+		"firebase-admin": "^12.0.0",
+		"helmet": "^7.1.0",
+		"nodemon": "^3.0.3",
+		"stripe": "^14.14.0",
+		"winston": "^3.11.0"
+	},
+	"devDependencies": {
+		"copyfiles": "^2.4.1",
+		"nodemon": "^3.0.3",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^5.0.5",
+		"ts-node": "^10.9.2"
+	}
+}
