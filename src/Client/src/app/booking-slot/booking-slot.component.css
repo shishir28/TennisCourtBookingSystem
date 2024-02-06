@@ -1,0 +1,5 @@
+.full-width-button {
+  width: 99vw;
+  height: 100vh;
+  flex-direction: row;
+}

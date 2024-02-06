@@ -8,25 +8,16 @@
       <mat-grid-tile class="matGridTileContent" *ngFor="let daySchedule of getDaysAndSlots()">
         <mat-list class='internalMatGrid'>
           <mat-list-item>{{ daySchedule.key }}</mat-list-item>
-          <mat-divider></mat-divider>
           <mat-list-item class='internalMatGrid'>
             <mat-grid-list cols="16" rowHeight="1:1">
-              <mat-grid-tile class="matGridTile" *ngFor="let value of daySchedule.values"
-                (click)="tileClicked(court.courtId,value.epochTimestampInSeconds)">{{
-                value.timeInString}}</mat-grid-tile>
+              <mat-grid-tile class="matGridTile" *ngFor="let value of daySchedule.values">
+                <app-booking-slot [availability]=value [courtId]=court.courtId>
+                </app-booking-slot>
+              </mat-grid-tile>
             </mat-grid-list>
           </mat-list-item>
         </mat-list>
       </mat-grid-tile>
     </mat-grid-list>
-
-    <!-- <h5 class="card-title">Booked Slots:</h5>
-    <ul *ngIf="court.bookedSlots.length > 0">
-      <li *ngFor="let slot of court.bookedSlots">
-        {{ slot.startTime }} - {{ slot.endTime }} on {{ slot.date }} by User {{ slot.userId }}
-      </li>
-    </ul> -->
-    <!-- <p *ngIf="court.bookedSlots.length === 0">No booked slots.</p> -->
   </mat-card-content>
-
 </mat-card>

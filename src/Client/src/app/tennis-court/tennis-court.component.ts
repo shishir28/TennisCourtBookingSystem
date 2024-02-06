@@ -11,9 +11,12 @@ import {
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { MatDivider } from '@angular/material/divider';
 import { MatList, MatListItem } from '@angular/material/list';
+import { BookingSlotComponent } from '../booking-slot/booking-slot.component';
 @Component({
   selector: 'app-tennis-court',
   standalone: true,
+  templateUrl: './tennis-court.component.html',
+  styleUrl: './tennis-court.component.css',
   imports: [
     CommonModule,
     NgForOf,
@@ -27,9 +30,8 @@ import { MatList, MatListItem } from '@angular/material/list';
     MatDivider,
     MatList,
     MatListItem,
+    BookingSlotComponent,
   ],
-  templateUrl: './tennis-court.component.html',
-  styleUrl: './tennis-court.component.css',
 })
 export class TennisCourtComponent {
   @Input()
@@ -56,10 +58,5 @@ export class TennisCourtComponent {
       epochTimestampInSeconds: epochTimestampInSeconds,
       timeInString: timeInString,
     };
-  }
-
-  tileClicked(courtId: string, hourSlot: number): void {
-    alert(` Tile ${courtId}  ${hourSlot} clicked!`);
-    // we need to determine and send respective details to strip for booking
   }
 }
