@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { TennisCourt } from '../models/models';
+import { TennisCourt } from '../models/tennisCourt.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({

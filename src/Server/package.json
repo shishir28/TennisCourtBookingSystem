@@ -11,7 +11,9 @@
 		"start:local": "nodemon --config nodemon.json app/main.ts",
 		"build": "tsc  && npm run copy-files",
 		"start": "node dist/main.js",
-		"server": "run-s clean copy start:local",
+		"start:debug": "node --inspect-brk dist/main.js",
+		"debug": "run-s clean build copy-files start:debug",
+		"server": "run-s clean copy-files start:local",
 		"copy-files": "copyfiles -u 1 public/**/*.json dist/public/"
 	},
 	"author": "Shishir Mishra",

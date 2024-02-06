@@ -1,7 +1,7 @@
 import { CommonModule, NgForOf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TennisCourtService } from './tennis-court.service';
-import { TennisCourt } from '../models/models';
+import { TennisCourt } from '../models/tennisCourt.model';
 import { Subscription } from 'rxjs';
 import { TennisCourtComponent } from '../tennis-court/tennis-court.component';
 import { MatList, MatListItem } from '@angular/material/list';

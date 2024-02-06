@@ -5,6 +5,7 @@ import express from "express";
 import cors from "cors";
 
 import { TennisCourtController } from "./tenniscourt.controller";
+import { CheckoutController } from "./checkout.controller";
 
 class API {
 	public api: express.Express;
@@ -24,6 +25,9 @@ class API {
 		const router = express.Router();
 		let tennisCourtController = new TennisCourtController();
 		tennisCourtController.addRoutes(router);
+
+		let checkoutController = new CheckoutController();
+		checkoutController.addRoutes(router);
 
 		router.get("/health", (_, res) => {
 			res.status(200).send({ success: true });

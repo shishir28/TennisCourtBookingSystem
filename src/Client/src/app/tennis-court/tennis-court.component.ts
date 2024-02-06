@@ -1,6 +1,9 @@
 import { CommonModule, NgForOf } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { TennisCourt, AvailabilityViewModel } from '../models/models';
+import {
+  TennisCourt,
+  AvailabilityViewModel,
+} from '../models/tennisCourt.model';
 import {
   MatCard,
   MatCardHeader,
