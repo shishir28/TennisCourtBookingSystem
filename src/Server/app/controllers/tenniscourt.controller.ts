@@ -2,11 +2,14 @@ import * as express from "express";
 
 import { TennisCourtService } from "../businessServices/tenniscourt.service";
 import { TennisCourt } from "../domain/tenniscourt.model";
+import { Mapper } from "@automapper/core";
+import { AutoMapperBootStrapper } from "../mappings/autoMapperBootStrapper";
+import { TennisCourtViewModel } from "./viewModels/tennisCourtViewModel";
 
 export class TennisCourtController {
+	private mapper: Mapper;
 	private tennisCourtService: TennisCourtService;
 	public addRoutes(api: express.Router) {
-
 		api.get(
 			"/api/tenniscourt",
 			(request: express.Request, response: express.Response) =>
@@ -15,6 +18,7 @@ export class TennisCourtController {
 	}
 
 	constructor() {
+		this.mapper = new AutoMapperBootStrapper().bootstrap();
 		this.tennisCourtService = new TennisCourtService();
 	}
 
@@ -22,8 +26,11 @@ export class TennisCourtController {
 		this.tennisCourtService
 			.getAllTennisCourts()
 			.then((tennisCourts: TennisCourt[]) => {
-				let result = tennisCourts;
-				// to do map it o respective view model
+				let result = this.mapper.mapArray(
+					tennisCourts,
+					TennisCourt,
+					TennisCourtViewModel
+				);
 				return response.status(200).send(result);
 			})
 			.catch((error: Error) => {

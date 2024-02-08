@@ -1,36 +1,29 @@
 import { AutoMap } from "@automapper/classes";
 
-export class Booking {
+export class BookingViewModel {
 	@AutoMap()
 	bookingId: string;
-
 	@AutoMap()
 	userId: string;
-
 	@AutoMap()
 	startTime: string;
-
 	@AutoMap()
 	endTime: string;
-
 	@AutoMap()
 	date: string;
 }
 
-export class Availability {
+export class AvailabilityViewModel {
 	[day: string]: Date[];
 }
 
-export class TennisCourt {
+export class TennisCourtViewModel {
 	@AutoMap()
 	courtId: string;
-
 	@AutoMap()
 	courtName: string;
-
 	@AutoMap()
-	availability?: Availability;
-
+	availability?: AvailabilityViewModel;
 	@AutoMap()
-	bookedSlots?: Booking[];
+	bookedSlots?: BookingViewModel[];
 }

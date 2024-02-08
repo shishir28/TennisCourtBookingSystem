@@ -33,8 +33,6 @@ export class CheckoutController {
 	}
 
 	setupSessionConfig(info: CheckoutRequest) {
-		console.log(`${info.callbackUrl}/?purchaseResult=success`);
-		console.log(`${info.callbackUrl}/?purchaseResult=failed`);
 		let sessionConfig = {
 			payment_method_types: ["card"],
 			success_url: `${info.callbackUrl}/?purchaseResult=success`,
