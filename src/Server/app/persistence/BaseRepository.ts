@@ -8,7 +8,7 @@ export abstract class BaseRepository<T> implements IBaseRepository<T> {
 	private dbContext: DBContext;
 
 	constructor(model: any) {
-		this.dbContext = new DBContext();
+		this.dbContext =  DBContext.getInstance();
 		this._model = model;
 	}
 

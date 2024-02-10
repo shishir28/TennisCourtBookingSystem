@@ -7,7 +7,15 @@ dotenv.config();
 export class DBContext {
 	public db: Firestore;
 
-	constructor() {
+	private static instance: DBContext | null = null;
+	public static getInstance(): DBContext {
+		if (!DBContext.instance) {
+			DBContext.instance = new DBContext();
+
+		}
+		return DBContext.instance;
+	}
+	private constructor() {
 		const serviceAccount = {
 			type: process.env.FIREBASE_TYPE || "",
 			project_id: process.env.FIREBASE_PROJECT_ID || "",

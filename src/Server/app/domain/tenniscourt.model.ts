@@ -2,7 +2,10 @@ import { AutoMap } from "@automapper/classes";
 
 export class Booking {
 	@AutoMap()
-	bookingId: string;
+	id: string;
+
+	@AutoMap()
+	courtId: string;
 
 	@AutoMap()
 	userId: string;
@@ -14,7 +17,10 @@ export class Booking {
 	endTime: string;
 
 	@AutoMap()
-	date: string;
+	date: Date;
+
+	@AutoMap()
+	status: string;
 }
 
 export class Availability {
@@ -23,7 +29,7 @@ export class Availability {
 
 export class TennisCourt {
 	@AutoMap()
-	courtId: string;
+	id: string;
 
 	@AutoMap()
 	courtName: string;

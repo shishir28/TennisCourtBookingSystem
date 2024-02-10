@@ -2,7 +2,9 @@ import { AutoMap } from "@automapper/classes";
 
 export class BookingViewModel {
 	@AutoMap()
-	bookingId: string;
+	id: string;
+	@AutoMap()
+	courtId: string;
 	@AutoMap()
 	userId: string;
 	@AutoMap()
@@ -10,7 +12,7 @@ export class BookingViewModel {
 	@AutoMap()
 	endTime: string;
 	@AutoMap()
-	date: string;
+	date: Date;
 }
 
 export class AvailabilityViewModel {
@@ -19,7 +21,7 @@ export class AvailabilityViewModel {
 
 export class TennisCourtViewModel {
 	@AutoMap()
-	courtId: string;
+	id: string;
 	@AutoMap()
 	courtName: string;
 	@AutoMap()

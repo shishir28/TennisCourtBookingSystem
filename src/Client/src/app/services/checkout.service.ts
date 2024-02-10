@@ -12,12 +12,15 @@ declare const Stripe: any;
 export class CheckoutService {
   constructor(private httpClient: HttpClient) {}
 
-  startCheckout(courtId: string, slotId: string): Observable<CheckoutResponse> {
+  startCheckout(
+    courtId: string,
+    epochTimestampInSeconds: string
+  ): Observable<CheckoutResponse> {
     return this.httpClient.post<CheckoutResponse>(
       environment.api.baseUrl + '/api/checkout',
       {
         courtId,
-        slotId,
+        epochTimestampInSeconds,
         callbackUrl: this.buildCallbackUrl(),
       }
     );

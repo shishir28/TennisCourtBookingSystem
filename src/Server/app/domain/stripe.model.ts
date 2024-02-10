@@ -1,7 +1,8 @@
 export interface CheckoutRequest {
 	courtId: string;
-	slotId: string;
+	epochTimestampInSeconds: number;
 	callbackUrl: string;
+	client_reference_id: string;
 }
 
 export interface CheckoutResponse {

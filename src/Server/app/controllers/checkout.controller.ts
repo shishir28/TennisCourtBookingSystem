@@ -1,9 +1,17 @@
 import * as express from "express";
 import { CheckoutRequest, CheckoutResponse } from "../domain/stripe.model";
+import { BookingService } from "../businessServices/booking.service";
+import { Booking } from "../domain/tenniscourt.model";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export class CheckoutController {
+	private bookingService: BookingService;
+
+	constructor() {
+		this.bookingService = new BookingService();
+	}
+
 	public addRoutes(api: express.Router) {
 		api.post(
 			"/api/checkout",
@@ -18,8 +26,8 @@ export class CheckoutController {
 	) {
 		try {
 			const checkoutRequest: CheckoutRequest = request.body;
-			const sessionConfig = this.setupSessionConfig(checkoutRequest);
-
+			const booking = await this.bookingService.createBooking(checkoutRequest);
+			const sessionConfig = this.setupSessionConfig(checkoutRequest, booking);
 			const session = await stripe.checkout.sessions.create(sessionConfig);
 			const checkoutResponse: CheckoutResponse = {
 				stripeCheckoutSessionId: session.id,
@@ -32,7 +40,7 @@ export class CheckoutController {
 		}
 	}
 
-	setupSessionConfig(info: CheckoutRequest) {
+	setupSessionConfig(info: CheckoutRequest, booking: Booking) {
 		let sessionConfig = {
 			payment_method_types: ["card"],
 			success_url: `${info.callbackUrl}/?purchaseResult=success`,
@@ -43,6 +51,7 @@ export class CheckoutController {
 					quantity: 1, // we cant buy more than 1 session at time
 				},
 			],
+			client_reference_id: booking.id,
 			mode: "subscription",
 		};
 		return sessionConfig;

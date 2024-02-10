@@ -1,5 +1,6 @@
 export interface Booking {
-  bookingId: string;
+  id: string;
+  courtId: string;
   userId: string;
   startTime: string;
   endTime: string;
@@ -9,12 +10,13 @@ export interface Booking {
 export interface Availability {
   [day: string]: Date[];
 }
-export interface AvailabilityViewModel  {
-  epochTimestampInSeconds: number
-  timeInString: string}
+export interface AvailabilityViewModel {
+  epochTimestampInSeconds: number;
+  timeInString: string;
+}
 
 export interface TennisCourt {
-  courtId: string;
+  id: string;
   courtName: string;
   availability: Availability;
   bookedSlots?: Booking[];

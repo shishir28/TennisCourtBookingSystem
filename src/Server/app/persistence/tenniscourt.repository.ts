@@ -5,7 +5,7 @@ export class TennisCourtRepository {
 	private dbContext: DBContext;
 
 	constructor() {
-		this.dbContext = new DBContext();
+		this.dbContext = DBContext.getInstance();
 	}
 
 	async ListAllTennisCourts(): Promise<TennisCourt[]> {
@@ -21,7 +21,7 @@ export class TennisCourtRepository {
 		snapshot.forEach((doc) => {
 			const rawData = doc.data();
 			data.push({
-				courtId: rawData.id,
+				id: rawData.id,
 				courtName: rawData.name,
 			});
 		});

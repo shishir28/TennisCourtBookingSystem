@@ -20,20 +20,22 @@ export class BookingSlotComponent {
 
   bookTheCourt(): void {
     this.bookingStarted = true;
-    const slotId: string = `${this.availability.epochTimestampInSeconds}`;
-    this.checkoutService.startCheckout(this.courtId, slotId).subscribe(
-      (checkoutResponse) => {
-        console.log(checkoutResponse);
-        this.checkoutService.redirectToCheckout(checkoutResponse);
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        this.bookingStarted = false;
-        console.log('completed');
-      }
-    );
+    const epochTimestampInSeconds: string = `${this.availability.epochTimestampInSeconds}`;
+    this.checkoutService
+      .startCheckout(this.courtId, epochTimestampInSeconds)
+      .subscribe(
+        (checkoutResponse) => {
+          console.log(checkoutResponse);
+          this.checkoutService.redirectToCheckout(checkoutResponse);
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          this.bookingStarted = false;
+          console.log('completed');
+        }
+      );
   }
 
   getBackgroundColor(): string {

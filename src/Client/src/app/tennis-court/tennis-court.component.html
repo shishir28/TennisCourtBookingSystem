@@ -11,7 +11,7 @@
           <mat-list-item class='internalMatGrid'>
             <mat-grid-list cols="16" rowHeight="1:1">
               <mat-grid-tile class="matGridTile" *ngFor="let value of daySchedule.values">
-                <app-booking-slot [availability]=value [courtId]=court.courtId>
+                <app-booking-slot [availability]=value [courtId]=court.id>
                 </app-booking-slot>
               </mat-grid-tile>
             </mat-grid-list>
