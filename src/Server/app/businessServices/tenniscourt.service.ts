@@ -20,7 +20,7 @@ export class TennisCourtService {
 							tc.availability = this.getAvailabilityForWeek();
 							return tc;
 						})
-						.sort((a, b) => a.id.localeCompare(b.id));
+						.sort((a, b) => a.courtName.localeCompare(b.courtName));
 					resolve(tennisCourts);
 				} catch (error) {
 					logger.error(error.message);

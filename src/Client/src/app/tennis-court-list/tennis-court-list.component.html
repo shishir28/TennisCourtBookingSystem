@@ -1,5 +1,9 @@
-<mat-list lass="card-list">
-  <mat-list-item *ngFor="let tennisCourt of tennisCourts">
+<mat-card *ngFor="let tennisCourt of tennisCourts">
+  <mat-card-header class="card-header">
+    <mat-card-title>{{ tennisCourt.courtName }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card-subtitle>Available Hours:</mat-card-subtitle>
     <app-tennis-court [court]="tennisCourt"></app-tennis-court>
-  </mat-list-item>
-</mat-list>
+  </mat-card-content>
+</mat-card>

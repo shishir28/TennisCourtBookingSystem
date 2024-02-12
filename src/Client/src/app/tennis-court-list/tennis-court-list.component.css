@@ -1,5 +1,7 @@
-.card-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
+ .card-header {
+   background-color: #3498db;
+   color: #fff;
+   text-align: center;
+   font-size: 18px;
+   font-weight: bold;
+ }

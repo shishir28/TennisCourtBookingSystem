@@ -1,23 +1,13 @@
-<mat-card class="card">
-  <mat-card-header class="card-header">
-    <mat-card-title>{{ court.courtName }}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <mat-card-subtitle>Available Hours:</mat-card-subtitle>
-    <mat-grid-list cols="1" rowHeight="100px">
-      <mat-grid-tile class="matGridTileContent" *ngFor="let daySchedule of getDaysAndSlots()">
-        <mat-list class='internalMatGrid'>
-          <mat-list-item>{{ daySchedule.key }}</mat-list-item>
-          <mat-list-item class='internalMatGrid'>
-            <mat-grid-list cols="16" rowHeight="1:1">
-              <mat-grid-tile class="matGridTile" *ngFor="let value of daySchedule.values">
-                <app-booking-slot [availability]=value [courtId]=court.id>
-                </app-booking-slot>
-              </mat-grid-tile>
-            </mat-grid-list>
-          </mat-list-item>
-        </mat-list>
+<mat-list *ngFor="let daySchedule of getDaysAndSlots()">
+  <mat-list-item>
+    {{ daySchedule.key }}
+  </mat-list-item>
+  <mat-list-item>
+    <mat-grid-list cols="16" rowHeight="1:1" rows="1" columnWidth="1:16">
+      <mat-grid-tile *ngFor="let value of daySchedule.values">
+        <app-booking-slot [availability]=value [courtId]=court.id>
+        </app-booking-slot>
       </mat-grid-tile>
     </mat-grid-list>
-  </mat-card-content>
-</mat-card>
+  </mat-list-item>
+</mat-list>

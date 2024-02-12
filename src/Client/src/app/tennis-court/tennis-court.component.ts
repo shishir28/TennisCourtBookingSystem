@@ -4,15 +4,7 @@ import {
   TennisCourt,
   AvailabilityViewModel,
 } from '../models/tennisCourt.model';
-import {
-  MatCard,
-  MatCardHeader,
-  MatCardContent,
-  MatCardTitle,
-  MatCardSubtitle,
-} from '@angular/material/card';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
-import { MatDivider } from '@angular/material/divider';
 import { MatList, MatListItem } from '@angular/material/list';
 import { BookingSlotComponent } from '../booking-slot/booking-slot.component';
 @Component({
@@ -23,14 +15,8 @@ import { BookingSlotComponent } from '../booking-slot/booking-slot.component';
   imports: [
     CommonModule,
     NgForOf,
-    MatCard,
-    MatCardHeader,
-    MatCardContent,
-    MatCardTitle,
-    MatCardSubtitle,
     MatGridList,
     MatGridTile,
-    MatDivider,
     MatList,
     MatListItem,
     BookingSlotComponent,
@@ -41,15 +27,19 @@ export class TennisCourtComponent {
   court!: TennisCourt;
 
   getDaysAndSlots(): { key: string; values: AvailabilityViewModel[] }[] {
-    return Object.keys(this.court.availability).map((key) => ({
+    console.log(this.court.availability);
+    let res = Object.keys(this.court.availability).map((key) => ({
       key,
       values: this.court.availability[key].map((x) =>
         this.transformDate(new Date(x))
       ),
     }));
+    // console.log(res);
+    return res;
   }
 
   transformDate(dateValue: Date): AvailabilityViewModel {
+    console.log(dateValue);
     const epochTimestampInSeconds = Math.floor(dateValue.getTime() / 1000);
     // Get hours and minutes
     const hours = dateValue.getHours();
