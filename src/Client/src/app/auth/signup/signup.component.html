@@ -1,0 +1,38 @@
+<div class="container signup-container" fxLayout="row" fxLayoutAlign="center center">
+  <form [formGroup]="signupForm" fxFlex="30%" fxFlex.sm="50%" fxFlex.xs="90%">
+    <mat-card>
+      <mat-card-title>Signup</mat-card-title>
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <input id="emailInput" matInput placeholder="Email" formControlName="email" autocomplete="email" type="email">
+
+          <mat-error id="invalidEmailError" *ngIf="signupForm.controls['email'].hasError('email')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error id="requiredEmailError" *ngIf="signupForm.controls['email'].hasError('required')">
+            Email is
+            <strong>required</strong>
+          </mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <input id="passwordInput" matInput placeholder="Password" formControlName="password" type="password"
+            autocomplete="current-password">
+          <mat-error id="requiredPasswordError" *ngIf="signupForm.controls['email'].hasError('required')">
+            Password is
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions class="signup-actions">
+        <button mat-raised-button id="signup" color="primary" (click)="signup()">Signup</button>
+
+      </mat-card-actions>
+
+    </mat-card>
+
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  </form>
+</div>

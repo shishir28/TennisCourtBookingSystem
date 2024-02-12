@@ -1,17 +1,18 @@
 import * as admin from "firebase-admin";
 import * as dotenv from "dotenv";
 import { Firestore } from "@google-cloud/firestore";
+import { Auth } from "firebase-admin/lib/auth/auth";
 
 dotenv.config();
 
 export class DBContext {
 	public db: Firestore;
+	public auth: Auth;
 
 	private static instance: DBContext | null = null;
 	public static getInstance(): DBContext {
 		if (!DBContext.instance) {
 			DBContext.instance = new DBContext();
-
 		}
 		return DBContext.instance;
 	}
@@ -30,9 +31,13 @@ export class DBContext {
 				process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL || "",
 			client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL || "",
 		};
+
 		admin.initializeApp({
 			credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+			databaseURL: process.env.FIREBASE_DATABASE_URL,
 		});
+
 		this.db = admin.firestore();
+		this.auth = admin.auth();
 	}
 }

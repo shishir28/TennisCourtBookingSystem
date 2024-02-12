@@ -39,7 +39,6 @@ export class TennisCourtComponent {
   }
 
   transformDate(dateValue: Date): AvailabilityViewModel {
-    console.log(dateValue);
     const epochTimestampInSeconds = Math.floor(dateValue.getTime() / 1000);
     // Get hours and minutes
     const hours = dateValue.getHours();

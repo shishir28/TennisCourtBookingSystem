@@ -6,6 +6,7 @@ import cors from "cors";
 
 import { TennisCourtController } from "./tenniscourt.controller";
 import { CheckoutController } from "./checkout.controller";
+import { AuthController } from "./auth.controller";
 
 class API {
 	public api: express.Express;
@@ -23,6 +24,9 @@ class API {
 		);
 
 		const router = express.Router();
+		let authController = new AuthController();
+		authController.addRoutes(router);
+
 		let tennisCourtController = new TennisCourtController();
 		tennisCourtController.addRoutes(router);
 
@@ -52,7 +56,6 @@ class API {
 		);
 
 		this.api.use(bodyParser.json());
-
 		this.api.use(function (err, _req, _res, _next) {
 			console.error(err.stack);
 		});
