@@ -1,1 +1,3 @@
+src/Client/src/environments/environment.prod.ts
 src/Client/src/environments/environment.ts
+src/Client/src/environments/environment.dev.ts

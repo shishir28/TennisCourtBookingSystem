@@ -1,13 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { AvailabilityViewModel } from '../models/tennisCourt.model';
-import { MatGridList, MatGridTile } from '@angular/material/grid-list';
-import { CheckoutService } from '../services/checkout.service';
+import { Component, Input } from "@angular/core";
+import { AvailabilityViewModel } from "../models/tennisCourt.model";
+import { MatGridList, MatGridTile } from "@angular/material/grid-list";
+import { CheckoutService } from "../services/checkout.service";
 @Component({
-  selector: 'app-booking-slot',
+  selector: "app-booking-slot",
   standalone: true,
   imports: [MatGridList, MatGridTile],
-  templateUrl: './booking-slot.component.html',
-  styleUrl: './booking-slot.component.css',
+  templateUrl: "./booking-slot.component.html",
+  styleUrl: "./booking-slot.component.scss",
 })
 export class BookingSlotComponent {
   @Input()
@@ -33,12 +33,12 @@ export class BookingSlotComponent {
         },
         () => {
           this.bookingStarted = false;
-          console.log('completed');
+          console.log("completed");
         }
       );
   }
 
   getBackgroundColor(): string {
-    return this.bookingStarted ? 'red' : 'green';
+    return this.bookingStarted ? "red" : "green";
   }
 }

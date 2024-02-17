@@ -5,7 +5,7 @@ import { TennisCourtListComponent } from "../tennis-court-list/tennis-court-list
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
-    styleUrl: './home.component.css',
+    styleUrl: './home.component.scss',
     imports: [CommonModule, TennisCourtListComponent]
 })
 export class HomeComponent {}

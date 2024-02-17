@@ -11,7 +11,7 @@ import { BookingSlotComponent } from '../booking-slot/booking-slot.component';
   selector: 'app-tennis-court',
   standalone: true,
   templateUrl: './tennis-court.component.html',
-  styleUrl: './tennis-court.component.css',
+  styleUrl: './tennis-court.component.scss',
   imports: [
     CommonModule,
     NgForOf,
