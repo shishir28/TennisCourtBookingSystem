@@ -9,7 +9,7 @@ import { Platform } from "@angular/cdk/platform";
 import { SplashScreenService } from "../@fury/services/splash-screen.service";
 
 @Component({
-  selector: "fury-root",
+  selector: "app-root",
   templateUrl: "./app.component.html",
 })
 export class AppComponent {

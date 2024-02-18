@@ -24,6 +24,14 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
+        path: "",
+        loadChildren: () =>
+          import("./tennis-courts/tennis-courts.module").then(
+            (m) => m.TennisCourtsModule
+          ),
+        pathMatch: "full",
+      },
+      {
         path: "tennis-courts",
         loadChildren: () =>
           import("./tennis-courts/tennis-courts.module").then(

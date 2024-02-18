@@ -35,7 +35,6 @@ $dark-theme: mat.define-dark-theme((
   background: $theme-background;
   color: $theme-text;
 
-  @import "./layout/config-panel/config-panel.component.theme";
 }
 
 .fury-light {
@@ -44,7 +43,6 @@ $dark-theme: mat.define-dark-theme((
   background: $theme-background;
   color: $theme-text;
 
-  @import "./layout/config-panel/config-panel.component.theme";
 }
 
 .fury-dark {
@@ -56,7 +54,6 @@ $dark-theme: mat.define-dark-theme((
   background: $theme-background;
   color: $theme-text;
 
-  @import "./layout/config-panel/config-panel.component.theme";
 }
 
 .fury-flat {
@@ -65,5 +62,4 @@ $dark-theme: mat.define-dark-theme((
   background: $theme-background;
   color: $theme-text;
 
-  @import "./layout/config-panel/config-panel.component.theme";
 }
