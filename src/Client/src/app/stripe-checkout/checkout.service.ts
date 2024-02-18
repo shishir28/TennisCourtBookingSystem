@@ -19,6 +19,7 @@ export class CheckoutService {
     return this.httpClient.post<CheckoutResponse>(
       environment.api.baseUrl + "/api/checkout",
       {
+        userId: localStorage.getItem("current-user-id")!,
         courtId,
         epochTimestampInSeconds,
         callbackUrl: this.buildCallbackUrl(),

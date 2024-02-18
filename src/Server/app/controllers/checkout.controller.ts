@@ -51,7 +51,7 @@ export class CheckoutController {
 					quantity: 1, // we cant buy more than 1 session at time
 				},
 			],
-			client_reference_id: booking.id,
+			client_reference_id: `${booking.id}--${info.userId}`,
 			mode: "subscription",
 		};
 		return sessionConfig;

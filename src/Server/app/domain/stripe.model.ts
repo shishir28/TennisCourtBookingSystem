@@ -1,4 +1,5 @@
 export interface CheckoutRequest {
+	userId: string;
 	courtId: string;
 	epochTimestampInSeconds: number;
 	callbackUrl: string;

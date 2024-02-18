@@ -38,13 +38,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.router.navigate(["/"]);
     this.authenticationService
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
         (result) => {
           this.loading = false;
-      
+          this.router.navigate(["/tennis-courts"]);
         },
         (error) => {
           this.loading = false;

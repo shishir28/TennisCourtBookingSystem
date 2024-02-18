@@ -24,7 +24,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: "",
+        path: "tennis-courts",
         loadChildren: () =>
           import("./tennis-courts/tennis-courts.module").then(
             (m) => m.TennisCourtsModule

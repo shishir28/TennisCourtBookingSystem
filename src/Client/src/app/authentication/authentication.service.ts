@@ -33,6 +33,7 @@ export class AuthenticationService {
           .getIdToken()
           .then((token) => {
             localStorage.setItem("current-user-token", token);
+            localStorage.setItem("current-user-id", user.uid);
             return token;
           })
           .catch((error) => {
@@ -57,9 +58,15 @@ export class AuthenticationService {
 
   logout(): Observable<void> {
     const auth = getAuth(this.ofApp);
+
     if (localStorage.getItem("current-user-token")) {
       localStorage.removeItem("current-user-token");
     }
     return from(auth.signOut());
+  }
+
+  isAuthenticated(): boolean {
+    const auth = getAuth(this.ofApp);
+    return !!auth.currentUser;
   }
 }

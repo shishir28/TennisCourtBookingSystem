@@ -36,7 +36,7 @@ export class BookingService {
 		const endTime = new Date(bookingTime.getTime() + 1 * 60 * 60 * 1000);
 
 		let bookingData: Booking = {
-			userId: "User1",
+			userId: checkoutRequest.userId,
 			courtId: checkoutRequest.courtId,
 			id: uuidv4(),
 			status: "InProgress",

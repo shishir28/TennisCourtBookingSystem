@@ -22,8 +22,7 @@ export class BookingSlotComponent {
     this.checkoutService
       .startCheckout(this.courtId, epochTimestampInSeconds)
       .subscribe(
-        (checkoutResponse) => {
-          console.log(checkoutResponse);
+        (checkoutResponse) => {        
           this.checkoutService.redirectToCheckout(checkoutResponse);
         },
         (error) => {
