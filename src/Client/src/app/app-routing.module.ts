@@ -24,14 +24,6 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: "apps/calendar",
-        loadChildren: () =>
-          import("./pages/apps/calendar/calendar.module").then(
-            (m) => m.CalendarAppModule
-          ),
-      },
-
-      {
         path: "page-layouts",
         loadChildren: () =>
           import("./pages/page-layouts/page-layouts.module").then(
@@ -43,6 +35,20 @@ const routes: Routes = [
         path: "blank",
         loadChildren: () =>
           import("./pages/blank/blank.module").then((m) => m.BlankModule),
+      },
+      {
+        path: "tennis-courts",
+        loadChildren: () =>
+          import("./tennis-courts/tennis-courts.module").then(
+            (m) => m.TennisCourtsModule
+          ),
+      },
+      {
+        path: "stripe-checkout",
+        loadChildren: () =>
+          import("./stripe-checkout/stripe-checkout.module").then(
+            (m) => m.StripeCheckoutModule
+          ),
       },
     ],
   },

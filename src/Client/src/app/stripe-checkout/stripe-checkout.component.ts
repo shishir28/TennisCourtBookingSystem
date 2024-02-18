@@ -5,10 +5,8 @@ import { MatProgressSpinner } from "@angular/material/progress-spinner";
 export interface StripeCheckoutViewModel {}
 @Component({
   selector: "app-stripe-checkout",
-  standalone: true,
-  imports: [CommonModule, NgIf, MatProgressSpinner],
   templateUrl: "./stripe-checkout.component.html",
-  styleUrl: "./stripe-checkout.component.scss",
+  styleUrls: ["./stripe-checkout.component.scss"],
 })
 export class StripeCheckoutComponent {
   message: string = "waiting for stripe checkout to complete";

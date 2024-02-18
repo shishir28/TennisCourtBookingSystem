@@ -1,13 +1,11 @@
 import { Component, Input } from "@angular/core";
-import { AvailabilityViewModel } from "../models/tennisCourt.model";
+import { AvailabilityViewModel } from "../../models/tennisCourt.model";
 import { MatGridList, MatGridTile } from "@angular/material/grid-list";
-import { CheckoutService } from "../services/checkout.service";
+import { CheckoutService } from "../../stripe-checkout/checkout.service";
 @Component({
   selector: "app-booking-slot",
-  standalone: true,
-  imports: [MatGridList, MatGridTile],
   templateUrl: "./booking-slot.component.html",
-  styleUrl: "./booking-slot.component.scss",
+  styleUrls: ["./booking-slot.component.scss"],
 })
 export class BookingSlotComponent {
   @Input()

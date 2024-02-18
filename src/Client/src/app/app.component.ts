@@ -44,20 +44,6 @@ export class AppComponent {
 
     this.sidenavService.addItems([
       {
-        name: "APPS",
-        position: 5,
-        type: "subheading",
-        customClass: "first-subheading",
-      },
-
-      {
-        name: "Calendar",
-        routeOrFunction: "/apps/calendar",
-        icon: "date_range",
-        position: 20,
-      },
-
-      {
         name: "PAGES",
         type: "subheading",
         position: 65,

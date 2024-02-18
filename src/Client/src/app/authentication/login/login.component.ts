@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         (result) => {
           this.loading = false;
           debugger;
-          this.router.navigate(["/apps/calendar"]);
+          this.router.navigate(["/tennis-courts"]);
         },
         (error) => {
           this.loading = false;

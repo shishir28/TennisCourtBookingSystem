@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
-import { CheckoutResponse } from '../models/stripe.model';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { environment } from "../../environments/environment";
+import { Observable } from "rxjs";
+import { CheckoutResponse } from "../models/stripe.model";
 
 declare const Stripe: any;
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CheckoutService {
   constructor(private httpClient: HttpClient) {}
@@ -17,7 +17,7 @@ export class CheckoutService {
     epochTimestampInSeconds: string
   ): Observable<CheckoutResponse> {
     return this.httpClient.post<CheckoutResponse>(
-      environment.api.baseUrl + '/api/checkout',
+      environment.api.baseUrl + "/api/checkout",
       {
         courtId,
         epochTimestampInSeconds,
