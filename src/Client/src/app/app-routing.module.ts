@@ -1,20 +1,20 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { LayoutComponent } from "./layout/layout.component";
-import { AuthenticationModule } from "./pages/authentication/authentication.module";
+import { AuthenticationModule } from "./authentication/authentication.module";
 
 const routes: Routes = [
   {
     path: "login",
     loadChildren: () =>
-      import("./pages/authentication/authentication.module").then(
+      import("./authentication/authentication.module").then(
         (m) => m.AuthenticationModule
       ),
   },
   {
     path: "register",
     loadChildren: () =>
-      import("./pages/authentication/register/register.module").then(
+      import("./authentication/register/register.module").then(
         (m) => m.RegisterModule
       ),
   },

@@ -6,7 +6,7 @@ import {
   Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { fadeInUpAnimation } from "../../../../@fury/animations/fade-in-up.animation";
+import { fadeInUpAnimation } from "../../../@fury/animations/fade-in-up.animation";
 import { AuthenticationService } from "../authentication.service";
 
 @Component({

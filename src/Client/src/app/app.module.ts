@@ -39,11 +39,9 @@ import { getAuth, provideAuth } from "@angular/fire/auth";
     // Displays Loading Bar when a Route Request or HTTP Request is pending
     PendingInterceptorModule,
     FirebaseAppModule,
-    // AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-
     // Register a Service Worker (optional)
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

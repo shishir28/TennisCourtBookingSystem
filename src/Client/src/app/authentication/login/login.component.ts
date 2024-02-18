@@ -7,8 +7,8 @@ import {
 } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { fadeInUpAnimation } from "../../../../@fury/animations/fade-in-up.animation";
-import { AuthenticationService } from "src/app/pages/authentication/authentication.service";
+import { fadeInUpAnimation } from "../../../@fury/animations/fade-in-up.animation";
+import { AuthenticationService } from "src/app/authentication/authentication.service";
 
 @Component({
   selector: "fury-login",

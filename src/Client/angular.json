@@ -3,11 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fury": {
+    "tennis-court-booking-ui": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "fury",
+      "prefix": "tennis-court-booking-ui",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fury",
+            "outputPath": "dist/tennis-court-booking-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
@@ -96,18 +96,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fury:build"
+            "browserTarget": "tennis-court-booking-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "fury:build:production"
+              "browserTarget": "tennis-court-booking-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fury:build"
+            "browserTarget": "tennis-court-booking-ui:build"
           }
         },
         "test": {
