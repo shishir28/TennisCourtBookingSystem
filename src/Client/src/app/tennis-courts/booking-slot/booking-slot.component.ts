@@ -37,6 +37,7 @@ export class BookingSlotComponent {
   }
 
   getBackgroundColor(): string {
-    return this.bookingStarted ? "red" : "green";
+    // shade of red(#f44336) and shade of green(#009688)
+    return this.bookingStarted ? "#f44336" : "#009688";
   }
 }

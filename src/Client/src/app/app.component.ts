@@ -43,18 +43,17 @@ export class AppComponent {
     }
 
     this.sidenavService.addItems([
-      {
-        name: "PAGES",
-        type: "subheading",
-        position: 65,
-      },
-
-      {
-        name: "Blank",
-        routeOrFunction: "/blank",
-        icon: "picture_in_picture",
-        position: 69,
-      },
+      // {
+      //   name: "PAGES",
+      //   type: "subheading",
+      //   position: 65,
+      // },
+      // {
+      //   name: "Blank",
+      //   routeOrFunction: "/blank",
+      //   icon: "picture_in_picture",
+      //   position: 69,
+      // },
     ]);
   }
 }

@@ -24,19 +24,6 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: "page-layouts",
-        loadChildren: () =>
-          import("./pages/page-layouts/page-layouts.module").then(
-            (m) => m.PageLayoutsModule
-          ),
-      },
-
-      {
-        path: "blank",
-        loadChildren: () =>
-          import("./pages/blank/blank.module").then((m) => m.BlankModule),
-      },
-      {
         path: "tennis-courts",
         loadChildren: () =>
           import("./tennis-courts/tennis-courts.module").then(
