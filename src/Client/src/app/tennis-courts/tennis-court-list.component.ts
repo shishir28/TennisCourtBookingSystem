@@ -1,9 +1,7 @@
-import { CommonModule, NgForOf } from "@angular/common";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { TennisCourtService } from "./tennis-court.service";
 import { TennisCourt } from "../models/tennisCourt.model";
 import { Subscription } from "rxjs";
-
 
 @Component({
   selector: "app-tennis-court-list",
@@ -15,9 +13,7 @@ export class TennisCourtListComponent implements OnInit, OnDestroy {
   sub!: Subscription;
   constructor(private tennisCourtService: TennisCourtService) {}
 
-  ngOnDestroy(): void {
-    throw new Error("Method not implemented.");
-  }
+  ngOnDestroy(): void {}
   ngOnInit(): void {
     this.sub = this.tennisCourtService.getTennisCourts().subscribe((data) => {
       this.tennisCourts = data;

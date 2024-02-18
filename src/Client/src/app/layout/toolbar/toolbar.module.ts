@@ -10,6 +10,7 @@ import { ToolbarFullscreenToggleComponent } from "./toolbar-fullscreen-toggle/to
 import { ToolbarSidenavMobileToggleComponent } from "./toolbar-sidenav-mobile-toggle/toolbar-sidenav-mobile-toggle.component";
 import { ToolbarUserComponent } from "./toolbar-user/toolbar-user.component";
 import { ToolbarComponent } from "./toolbar.component";
+import { AuthenticationService } from "../../authentication/authentication.service";
 
 @NgModule({
   imports: [
@@ -28,5 +29,6 @@ import { ToolbarComponent } from "./toolbar.component";
     ToolbarSidenavMobileToggleComponent,
   ],
   exports: [ToolbarComponent],
+  providers: [AuthenticationService],
 })
 export class ToolbarModule {}

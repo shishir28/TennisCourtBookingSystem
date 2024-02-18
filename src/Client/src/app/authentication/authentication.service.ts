@@ -9,6 +9,7 @@ import {
   signInWithEmailAndPassword,
 } from "@angular/fire/auth";
 import { from } from "rxjs";
+import { Router } from "@angular/router";
 export class SignUpResponse {
   userId!: string;
   email!: string;
@@ -18,7 +19,11 @@ export class SignUpResponse {
   providedIn: "root",
 })
 export class AuthenticationService {
-  constructor(private httpClient: HttpClient, private ofApp: FirebaseApp) {}
+  constructor(
+    private httpClient: HttpClient,
+    private ofApp: FirebaseApp,
+    private router: Router
+  ) {}
 
   login(email: string, password: string): Observable<Unsubscribe> {
     const auth = getAuth(this.ofApp);
@@ -27,6 +32,7 @@ export class AuthenticationService {
         const token = user!
           .getIdToken()
           .then((token) => {
+            localStorage.setItem("current-user-token", token);
             return token;
           })
           .catch((error) => {
@@ -49,5 +55,11 @@ export class AuthenticationService {
     );
   }
 
-  logout() {}
+  logout(): Observable<void> {
+    const auth = getAuth(this.ofApp);
+    if (localStorage.getItem("current-user-token")) {
+      localStorage.removeItem("current-user-token");
+    }
+    return from(auth.signOut());
+  }
 }

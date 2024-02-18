@@ -20,6 +20,7 @@ import {
   provideFirebaseApp,
   initializeApp,
 } from "@angular/fire/app";
+import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { getAuth, provideAuth } from "@angular/fire/auth";
 

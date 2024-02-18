@@ -21,10 +21,6 @@
         <mat-form-field fxFlex="grow">
           <mat-label>Password</mat-label>
           <input matInput [type]="inputType" formControlName="password" required>
-          <button type="button" mat-icon-button matSuffix matTooltip="Toggle Visibility">
-            <mat-icon *ngIf="visible">visibility</mat-icon>
-            <mat-icon *ngIf="!visible">visibility_off</mat-icon>
-          </button>
           <mat-hint>Click the eye to toggle visibility</mat-hint>
           <mat-error *ngIf="loginForm.get('password').hasError('required')">We need a password to log you in</mat-error>
         </mat-form-field>

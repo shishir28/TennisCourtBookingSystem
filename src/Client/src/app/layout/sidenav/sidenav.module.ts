@@ -6,6 +6,7 @@ import { ScrollbarModule } from '../../../@fury/shared/scrollbar/scrollbar.modul
 import { SidenavItemComponent } from './sidenav-item/sidenav-item.component';
 import { SidenavComponent } from './sidenav.component';
 import { SidenavService } from './sidenav.service';
+import { AuthenticationService } from "../../authentication/authentication.service";
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { SidenavService } from './sidenav.service';
   ],
   declarations: [SidenavComponent, SidenavItemComponent],
   exports: [SidenavComponent],
-  providers: [SidenavService]
+  providers: [SidenavService,AuthenticationService]
 })
 export class SidenavModule {
 }

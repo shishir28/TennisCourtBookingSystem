@@ -43,8 +43,8 @@
       <h4 class="sidenav-user-name">John Doe</h4>
       <!-- <h5 class="sidenav-user-email">david.smith@example.com</h5> -->
 
-      <div class="sidenav-user-icons" fxLayout="row">
-        <a [routerLink]="['/login']" mat-icon-button>
+      <div class="sidenav-user-icons" fxLayout="row" (click)="logout()">
+        <a mat-icon-button>
           <mat-icon>exit_to_app</mat-icon>
         </a>
       </div>

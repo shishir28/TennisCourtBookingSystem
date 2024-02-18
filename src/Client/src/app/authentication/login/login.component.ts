@@ -1,11 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
   UntypedFormBuilder,
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
 } from "@angular/forms";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { fadeInUpAnimation } from "../../../@fury/animations/fade-in-up.animation";
 import { AuthenticationService } from "src/app/authentication/authentication.service";
@@ -18,7 +17,6 @@ import { AuthenticationService } from "src/app/authentication/authentication.ser
 })
 export class LoginComponent implements OnInit {
   loginForm: UntypedFormGroup;
-
   inputType = "password";
   visible = false;
   loading!: boolean;
@@ -26,8 +24,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: UntypedFormBuilder,
-    private cd: ChangeDetectorRef,
-    private snackbar: MatSnackBar,
     public authenticationService: AuthenticationService
   ) {}
 
@@ -48,8 +44,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (result) => {
           this.loading = false;
-          debugger;
-          this.router.navigate(["/tennis-courts"]);
+      
         },
         (error) => {
           this.loading = false;
