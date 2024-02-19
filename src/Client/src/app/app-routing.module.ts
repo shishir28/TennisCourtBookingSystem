@@ -45,6 +45,13 @@ const routes: Routes = [
             (m) => m.StripeCheckoutModule
           ),
       },
+      {
+        path: "",
+        loadChildren: () =>
+          import("./shared/shared-components-routing.module").then(
+            (m) => m.SharedRoutingModule
+          ),
+      },
     ],
   },
 ];
