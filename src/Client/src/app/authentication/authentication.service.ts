@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 import { FirebaseApp } from "@angular/fire/app";
 import {
+  Auth,
   Unsubscribe,
   getAuth,
   signInWithEmailAndPassword,
@@ -58,7 +59,6 @@ export class AuthenticationService {
 
   logout(): Observable<void> {
     const auth = getAuth(this.ofApp);
-
     if (localStorage.getItem("current-user-token")) {
       localStorage.removeItem("current-user-token");
     }
@@ -68,5 +68,9 @@ export class AuthenticationService {
   isAuthenticated(): boolean {
     const auth = getAuth(this.ofApp);
     return !!auth.currentUser;
+  }
+
+  getAuthObject(): Auth {
+    return getAuth(this.ofApp);
   }
 }

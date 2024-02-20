@@ -35,7 +35,6 @@ const routes: Routes = [
 
       {
         path: "stripe-checkout",
-        canActivate: [AuthGuard],
         loadChildren: () =>
           import("./stripe-checkout/stripe-checkout.module").then(
             (m) => m.StripeCheckoutModule
