@@ -22,12 +22,8 @@ export class TennisCourtListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
 
   ngOnInit(): void {
-    if (!this.authenticationService.isAuthenticated()) {
-      this.router.navigate(["/login"]);
-    } else {
-      this.sub = this.tennisCourtService.getTennisCourts().subscribe((data) => {
-        this.tennisCourts = data;
-      });
-    }
+    this.sub = this.tennisCourtService.getTennisCourts().subscribe((data) => {
+      this.tennisCourts = data;
+    });
   }
 }

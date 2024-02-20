@@ -20,9 +20,9 @@ import {
   provideFirebaseApp,
   initializeApp,
 } from "@angular/fire/app";
-import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { getAuth, provideAuth } from "@angular/fire/auth";
+import { PermissionsService } from "./shared/guards/auth.guard";
 
 @NgModule({
   imports: [
@@ -62,6 +62,7 @@ import { getAuth, provideAuth } from "@angular/fire/auth";
         verticalPosition: "bottom",
       } as MatSnackBarConfig,
     },
+    PermissionsService,
   ],
 })
 export class AppModule {}

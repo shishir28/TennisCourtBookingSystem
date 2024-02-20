@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { LayoutComponent } from "./layout/layout.component";
 import { AuthenticationModule } from "./authentication/authentication.module";
+import { AuthGuard } from "./shared/guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -18,28 +19,23 @@ const routes: Routes = [
         (m) => m.RegisterModule
       ),
   },
-
   {
     path: "",
     component: LayoutComponent,
     children: [
       {
         path: "tennis-courts",
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import("./tennis-courts/tennis-courts.module").then(
             (m) => m.TennisCourtsModule
           ),
         pathMatch: "full",
       },
-      {
-        path: "tennis-courts",
-        loadChildren: () =>
-          import("./tennis-courts/tennis-courts.module").then(
-            (m) => m.TennisCourtsModule
-          ),
-      },
+
       {
         path: "stripe-checkout",
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import("./stripe-checkout/stripe-checkout.module").then(
             (m) => m.StripeCheckoutModule
@@ -48,8 +44,8 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("./shared/shared-components-routing.module").then(
-            (m) => m.SharedRoutingModule
+          import("./shared/shared-components.module").then(
+            (m) => m.SharedComponentsModule
           ),
       },
     ],

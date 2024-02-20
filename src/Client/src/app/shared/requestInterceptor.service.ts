@@ -21,8 +21,7 @@ export class RequestInterceptorService implements HttpInterceptor {
   public pendingRequests: number = 0;
   public showLoading: boolean = false;
   private numberOfAttempts: number;
-    private _filteredUrlPatterns: RegExp[] = [];
-    
+  private _filteredUrlPatterns: RegExp[] = [];
   constructor(private injector: Injector) {
     this.numberOfAttempts = 3;
   }
@@ -52,7 +51,6 @@ export class RequestInterceptorService implements HttpInterceptor {
   private interceptErrors(err: any): Observable<HttpResponse<any>> {
     let locationPath = location.origin;
     let lastCharacter = locationPath.substr(locationPath.length - 1);
-    debugger;
     if (lastCharacter != "/") {
       locationPath = locationPath + "/";
     }

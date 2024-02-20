@@ -1,4 +1,9 @@
 import { Component } from "@angular/core";
+import {
+  MatCardContent,
+  MatCardHeader,
+  MatCardTitle,
+} from "@angular/material/card";
 
 @Component({
   selector: "tennis-court-booking-ui-access-denied",
