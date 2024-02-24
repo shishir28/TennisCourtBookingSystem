@@ -1,6 +1,6 @@
 import { TennisCourtRepository } from "../persistence/tenniscourt.repository";
-import { logger } from "../infrastructure/logger";
 import { Availability, TennisCourt } from "../domain/tenniscourt.model";
+import { logger } from "../infrastructure";
 
 export class TennisCourtService {
 	private tennisCourtRepository: TennisCourtRepository;

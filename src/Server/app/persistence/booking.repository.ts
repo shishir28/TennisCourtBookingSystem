@@ -1,16 +1,16 @@
+import { AppContext } from "../AppContext";
 import { Booking } from "../domain/tenniscourt.model";
-import { DBContext } from "./DBContext";
 
 export class BookingRepository {
-	private dbContext: DBContext;
+	private appContext: AppContext;
 
 	constructor() {
-		this.dbContext = DBContext.getInstance();
+		this.appContext = AppContext.getInstance();
 	}
 
 	async Insert(model: Booking): Promise<Booking> {
 		const collectionName: string = "bookings";
-		const documentReference = await this.dbContext.db
+		const documentReference = await this.appContext.db
 			.collection(collectionName)
 			.add(model);
 		const newId = documentReference.id;

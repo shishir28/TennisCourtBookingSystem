@@ -1,6 +1,7 @@
 import * as express from "express";
 import { AuthService } from "../businessServices/auth.service";
 import { SignUpRequest, SignUpResponse } from "../domain/auth.model";
+import { logger } from "../infrastructure";
 
 export class AuthController {
 	private authService: AuthService;
@@ -30,7 +31,7 @@ export class AuthController {
 					return response.status(200).json(signUpResponse);
 				});
 		} catch (error) {
-			console.log(error);
+			logger.error(error);
 			return response.status(500).send("stripe checkout failed.");
 		}
 	}

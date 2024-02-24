@@ -1,19 +1,19 @@
 import { TennisCourt } from "../domain/tenniscourt.model";
-import { DBContext } from "./DBContext";
+import { AppContext } from "../AppContext";
+import { logger } from "../infrastructure";
 
 export class TennisCourtRepository {
-	private dbContext: DBContext;
-
+	private appContext: AppContext;
 	constructor() {
-		this.dbContext = DBContext.getInstance();
+		this.appContext = AppContext.getInstance();
 	}
 
 	async ListAllTennisCourts(): Promise<TennisCourt[]> {
 		const collectionName: string = "tennisCourts";
-		const snapshot = await this.dbContext.db.collection(collectionName).get();
+		const snapshot = await this.appContext.db.collection(collectionName).get();
 
 		if (snapshot.empty) {
-			console.log("No documents found for tennis courts.");
+			logger.info("No documents found for tennis courts.");
 			return [];
 		}
 

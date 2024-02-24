@@ -5,16 +5,16 @@ import { Auth } from "firebase-admin/lib/auth/auth";
 
 dotenv.config();
 
-export class DBContext {
+export class AppContext {
 	public db: Firestore;
 	public auth: Auth;
 
-	private static instance: DBContext | null = null;
-	public static getInstance(): DBContext {
-		if (!DBContext.instance) {
-			DBContext.instance = new DBContext();
+	private static instance: AppContext | null = null;
+	public static getInstance(): AppContext {
+		if (!AppContext.instance) {
+			AppContext.instance = new AppContext();
 		}
-		return DBContext.instance;
+		return AppContext.instance;
 	}
 	private constructor() {
 		const serviceAccount = {

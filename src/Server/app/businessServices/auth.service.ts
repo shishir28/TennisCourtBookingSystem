@@ -1,17 +1,18 @@
 import { UserRecord } from "firebase-admin/lib/auth/user-record";
-import { DBContext } from "../persistence/DBContext";
+import { AppContext } from "../AppContext";
+import { logger } from "../infrastructure";
 
 export class AuthService {
-	private dbContext: DBContext;
+	private appContext: AppContext;
 
 	constructor() {
-		this.dbContext = DBContext.getInstance();
+		this.appContext = AppContext.getInstance();
 	}
 
 	async signup(email: string, password: string): Promise<UserRecord> {
 		let promise = new Promise<UserRecord>(
 			(resolve: Function, reject: Function) => {
-				return this.dbContext.auth
+				return this.appContext.auth
 					.createUser({
 						email: email,
 						password: password,
@@ -20,7 +21,7 @@ export class AuthService {
 						resolve(userRecord);
 					})
 					.catch((error: Error) => {
-						// logger.error(error.message);
+						logger.error(error.message);
 						reject(error);
 					});
 			}

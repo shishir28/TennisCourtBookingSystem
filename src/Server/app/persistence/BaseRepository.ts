@@ -1,14 +1,10 @@
-import { IBaseRepository } from './IBaseRepository';
-import { logger } from '../infrastructure/logger';
-import { DBContext } from './DBContext';
+import { IBaseRepository } from "./IBaseRepository";
+import { logger } from "../infrastructure";
 
 export abstract class BaseRepository<T> implements IBaseRepository<T> {
 	private _model: any;
-	private connection: any;
-	private dbContext: DBContext;
 
 	constructor(model: any) {
-		this.dbContext =  DBContext.getInstance();
 		this._model = model;
 	}
 
@@ -33,8 +29,6 @@ export abstract class BaseRepository<T> implements IBaseRepository<T> {
 		});
 	}
 
-
-
 	async Delete(identifier: number): Promise<Boolean> {
 		return this._model
 			.destroy({ where: { id: identifier } })
@@ -48,6 +42,4 @@ export abstract class BaseRepository<T> implements IBaseRepository<T> {
 				return false;
 			});
 	}
-
-
 }

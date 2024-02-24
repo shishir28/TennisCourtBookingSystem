@@ -2,6 +2,7 @@ import * as express from "express";
 import { CheckoutRequest, CheckoutResponse } from "../domain/stripe.model";
 import { BookingService } from "../businessServices/booking.service";
 import { Booking } from "../domain/tenniscourt.model";
+import { logger } from "../infrastructure";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -35,7 +36,7 @@ export class CheckoutController {
 			};
 			return response.status(200).json(checkoutResponse);
 		} catch (error) {
-			console.log(error);
+			logger.error(error);
 			return response.status(500).send("stripe checkout failed.");
 		}
 	}
