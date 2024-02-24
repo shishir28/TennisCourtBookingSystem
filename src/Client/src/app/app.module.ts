@@ -23,6 +23,7 @@ import {
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { getAuth, provideAuth } from "@angular/fire/auth";
 import { PermissionsService } from "./shared/guards/auth.guard";
+import { SharedComponentsModule } from "./shared/shared-components.module";
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { PermissionsService } from "./shared/guards/auth.guard";
     PendingInterceptorModule,
     FirebaseAppModule,
     AngularFireAuthModule,
+    SharedComponentsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     // Register a Service Worker (optional)

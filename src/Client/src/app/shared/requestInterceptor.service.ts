@@ -1,4 +1,4 @@
-import { Injectable, Injector } from "@angular/core";
+import { Injectable } from "@angular/core";
 import {
   HttpInterceptor,
   HttpRequest,
@@ -7,12 +7,9 @@ import {
   HttpResponse,
 } from "@angular/common/http";
 import { Observable } from "rxjs";
-import {
-  EMPTY as observableEmpty,
-  throwError as observableThrowError,
-} from "rxjs";
-import { AuthenticationService } from "../authentication/authentication.service";
+import * as rxjs from "rxjs";
 import { catchError, finalize, map } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 declare var $: any;
 
@@ -20,24 +17,37 @@ declare var $: any;
 export class RequestInterceptorService implements HttpInterceptor {
   public pendingRequests: number = 0;
   public showLoading: boolean = false;
-  private numberOfAttempts: number;
   private _filteredUrlPatterns: RegExp[] = [];
-  constructor(private injector: Injector) {
+  private numberOfAttempts: number;
+
+  constructor(private router: Router) {
     this.numberOfAttempts = 3;
   }
 
-  //   addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
-  //       // return req.clone({ setHeaders: { Authorization: "Bearer " + token } });
-  //       return req;
-  //   }
+  addCustomHeaders(req: HttpRequest<any>, token: string): HttpRequest<any> {
+    const customHeaders: { [key: string]: string } = {};
+    customHeaders["Content-Type"] = "application/json";
+    customHeaders["If-Modified-Since"] = "Sun, 01 Jan 2024 00:00:00 GMT";
+    customHeaders["Cache-Control"] = "no-store, no-cache";
+    customHeaders["Pragma"] = "no-cache Expires: 0";
+    if (!!localStorage.getItem("current-user-token")) {
+      customHeaders["Authorization"] =
+        "Bearer " + localStorage.getItem("current-user-token");
+    }
+    let request = req.clone({
+      setHeaders: customHeaders,
+    });
+    return request;
+  }
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const authService = this.injector.get(AuthenticationService);
+    const modifiedRequest = this.addCustomHeaders(request, "myToken");
+
     // Continue with the modified request
-    return next.handle(request).pipe(
+    return next.handle(modifiedRequest).pipe(
       map((event: HttpEvent<any>) => {
         return event;
       }),
@@ -56,20 +66,30 @@ export class RequestInterceptorService implements HttpInterceptor {
     }
 
     if (err.status === 404) {
-      window.location.href = locationPath + "notFound";
-      return observableEmpty;
+      window.location.href = locationPath + "notfound";
+      return rxjs.EMPTY;
     } else if (err.status === 401 || err.status === 403) {
-      window.location.href = locationPath + "accessDenied";
-      return observableEmpty;
+      window.location.href = locationPath + "accessdenied";
+      return rxjs.EMPTY;
     } else if (err.status === 410) {
       sessionStorage.clear;
       window.location.href = locationPath + "login";
-      return observableEmpty;
+      return rxjs.EMPTY;
     } else if (err.status >= 500) {
-      window.location.href = locationPath + "internalServerError";
-      return observableEmpty;
+      window.location.href = locationPath + "internalservererror";
+      return rxjs.EMPTY;
     } else {
-      return observableThrowError(err);
+      return rxjs.throwError(err);
     }
   }
 }
+
+export function RequestInterceptorServiceFactory(router: Router) {
+  return new RequestInterceptorService(router);
+}
+
+export const RequestInterceptorServiceFactoryProvider = {
+  provide: RequestInterceptorService,
+  useFactory: RequestInterceptorServiceFactory,
+  deps: [Router],
+};
