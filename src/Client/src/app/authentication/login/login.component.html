@@ -38,5 +38,12 @@
         <a [routerLink]="['/register']">Click here to create one</a>
       </p>
     </div>
+    <div fxLayout="column" *ngIf="serverErrorMessage">
+      <div fxLayout="row" fxLayoutAlign="center stretch">
+        <label class="control-label">
+          {{ serverErrorMessage}}
+        </label>
+      </div>
+    </div>
   </div>
 </div>

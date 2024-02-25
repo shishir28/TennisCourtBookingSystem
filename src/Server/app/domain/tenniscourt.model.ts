@@ -26,7 +26,7 @@ export class CompositeDate {
 	@AutoMap()
 	dateValue: Date;
 	@AutoMap()
-	isBlocked: Boolean;
+	availabilityStatus: string;
 }
 
 export class Availability {

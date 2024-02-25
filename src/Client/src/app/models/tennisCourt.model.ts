@@ -9,7 +9,7 @@ export interface Booking {
 }
 export interface CompositeDate {
   dateValue: Date;
-  isBlocked: Boolean;
+  availabilityStatus: string;
 }
 
 export interface Availability {
@@ -19,7 +19,7 @@ export interface Availability {
 export interface AvailabilityViewModel {
   epochTimestampInSeconds: number;
   timeInString: string;
-  isBlocked: Boolean;
+  availabilityStatus: string;
 }
 
 export interface TennisCourt {

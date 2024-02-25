@@ -115,16 +115,43 @@ export class TennisCourtService {
 				0
 			);
 			const result = dayBookings?.filter(
-				(b) =>
-					parseInt(b.startTime.split(":")[0]) === hourOfTheDay &&
-					b.status === "Completed"
+				(b) => parseInt(b.startTime.split(":")[0]) === hourOfTheDay
+			);
+
+			const availabilityStatus = this.mapBookingStatusToAvailabilityStatus(
+				result,
+				dateValue
 			);
 
 			slots.push({
 				dateValue,
-				isBlocked: !!result && result.length > 0,
+				availabilityStatus,
 			});
 		}
 		return slots;
+	}
+
+	private mapBookingStatusToAvailabilityStatus(
+		bookings: Booking[],
+		dateValue: Date
+	): string {
+		if (dateValue < new Date()) {
+			return "NotAvailable";
+		}
+
+		if (!bookings || bookings.length === 0) {
+			return "Available";
+		}
+
+		const booking = bookings[0];
+
+		switch (booking.status) {
+			case "InProgress":
+				return "InProgress";
+			case "Completed":
+				return "Blocked";
+			default:
+				return "Available";
+		}
 	}
 }

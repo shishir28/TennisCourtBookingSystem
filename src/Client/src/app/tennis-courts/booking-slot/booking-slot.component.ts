@@ -36,6 +36,22 @@ export class BookingSlotComponent {
 
   getBackgroundColor(): string {
     // shade of red(#f44336) and shade of green(#009688)
-    return this.availability.isBlocked ? "#f44336" : "#009688";
+    switch (this.availability.availabilityStatus) {
+      case "NotAvailable":
+        return "#fafafa";
+      case "InProgress":
+        return "lightpink";
+      case "Blocked":
+        return "#f44336";
+      case "Available":
+        return "#009688";
+      default:
+        return "lightblue";
+    }
+  }
+
+  shouldBeDisabled(): Boolean {
+    // shade of red(#f44336) and shade of green(#009688)
+    return this.availability.availabilityStatus !== "Available";
   }
 }

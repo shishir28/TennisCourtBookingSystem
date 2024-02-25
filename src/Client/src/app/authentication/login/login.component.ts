@@ -8,6 +8,7 @@ import {
 import { Router } from "@angular/router";
 import { fadeInUpAnimation } from "../../../@fury/animations/fade-in-up.animation";
 import { AuthenticationService } from "src/app/authentication/authentication.service";
+import { FirebaseError } from "@angular/fire/app";
 
 @Component({
   selector: "fury-login",
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   inputType = "password";
   visible = false;
   loading!: boolean;
+  serverErrorMessage: string;
 
   constructor(
     private router: Router,
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.serverErrorMessage = "";
     this.authenticationService
       .login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe(
@@ -45,9 +48,13 @@ export class LoginComponent implements OnInit {
           this.loading = false;
           this.router.navigate(["/tennis-courts"]);
         },
-        (error) => {
+        (error: FirebaseError) => {
           this.loading = false;
-          console.log(error);
+          if ((error.code == "auth/invalid-credential")) {
+            this.serverErrorMessage = "Invalid Credentials!";
+          } else {
+            this.serverErrorMessage = error.message;
+          }  
         }
       );
   }

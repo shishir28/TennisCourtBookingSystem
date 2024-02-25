@@ -18,7 +18,7 @@ export class CompositeDateViewModel {
 	@AutoMap()
 	dateValue: Date;
 	@AutoMap()
-	isBlocked: Boolean;
+	availabilityStatus: string;
 }
 
 export class AvailabilityViewModel {

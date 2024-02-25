@@ -1,2 +1,3 @@
-<button class="full-width-button" [style.backgroundColor]=getBackgroundColor() (click)="bookTheCourt()">
+<button class="full-width-button" [disabled]="shouldBeDisabled()" [style.backgroundColor]=getBackgroundColor()
+  (click)="bookTheCourt()">
   {{availability.timeInString}}</button>

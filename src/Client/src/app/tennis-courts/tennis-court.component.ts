@@ -33,7 +33,7 @@ export class TennisCourtComponent {
     return {
       epochTimestampInSeconds: epochTimestampInSeconds,
       timeInString: timeInString,
-      isBlocked: cd.isBlocked,
+      availabilityStatus: cd.availabilityStatus,
     };
   }
 }
