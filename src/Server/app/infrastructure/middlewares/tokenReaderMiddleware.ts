@@ -14,7 +14,6 @@ const TokenReaderMiddleware = (
 			.verifyIdToken(authorizationHeader.split(" ")[1])
 			.then((decodedToken: any) => {
 				req["current-user-Id"] = decodedToken.uid;
-				logger.info(`User ${decodedToken.uid} is authorized.`);
 				next();
 			})
 			.catch((error: Error) => {
@@ -22,6 +21,7 @@ const TokenReaderMiddleware = (
 				res.status(401).send("Unauthorized");
 			});
 	} else {
+		logger.warn("No authorization header found.");
 		next();
 	}
 };

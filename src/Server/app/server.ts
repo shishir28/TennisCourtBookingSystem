@@ -6,6 +6,7 @@ import * as path from "path";
 import serveStatic from "serve-static";
 import helmet from "helmet";
 import { errorHandler, rateLimiter, tokenReader } from "./infrastructure";
+import { StripeWebhooksController } from "./controllers/stripewebhooks.controller";
 
 const initServer = () => {
 	const port = process.env.PORT || 8080;
@@ -29,6 +30,15 @@ const initServer = () => {
 			extended: true,
 		})
 	);
+	//stripe webhooks are special and need to be handled differently
+	let stripeWebhooksController = new StripeWebhooksController();
+
+	app
+		.route("/stripeWebhooks")
+		.post(
+			bodyParser.raw({ type: "application/json" }),
+			stripeWebhooksController.consumeStripeEvents
+		);
 
 	app.use(bodyParser.json());
 	app.use(function (err, _req, _res, _next) {

@@ -11,7 +11,6 @@ export class BookingService {
 
 	async createBooking(checkoutRequest: CheckoutRequest): Promise<Booking> {
 		const bookingData = this.getBookingData(checkoutRequest);
-
 		let promise = new Promise<Booking>(
 			(resolve: Function, reject: Function) => {
 				return this.bookingRepository
@@ -21,6 +20,22 @@ export class BookingService {
 					})
 					.catch((error: Error) => {
 						// logger.error(error.message);
+						reject(error);
+					});
+			}
+		);
+		return promise;
+	}
+
+	async updateBooking(bookingId: string): Promise<Boolean> {
+		let promise = new Promise<Boolean>(
+			(resolve: Function, reject: Function) => {
+				return this.bookingRepository
+					.Update(bookingId)
+					.then((bookingResponse: Boolean) => {
+						resolve(bookingResponse);
+					})
+					.catch((error: Error) => {
 						reject(error);
 					});
 			}

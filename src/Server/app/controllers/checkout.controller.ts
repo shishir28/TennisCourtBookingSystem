@@ -27,6 +27,7 @@ export class CheckoutController {
 	) {
 		try {
 			const checkoutRequest: CheckoutRequest = request.body;
+			checkoutRequest.userId = request["current-user-Id"];
 			const booking = await this.bookingService.createBooking(checkoutRequest);
 			const sessionConfig = this.setupSessionConfig(checkoutRequest, booking);
 			const session = await stripe.checkout.sessions.create(sessionConfig);
@@ -37,7 +38,7 @@ export class CheckoutController {
 			return response.status(200).json(checkoutResponse);
 		} catch (error) {
 			logger.error(error);
-			return response.status(500).send("stripe checkout failed.");
+			return response.status(500).send("Stripe checkout failed.");
 		}
 	}
 
@@ -52,7 +53,7 @@ export class CheckoutController {
 					quantity: 1, // we cant buy more than 1 session at time
 				},
 			],
-			client_reference_id: `${booking.id}--${info.userId}`,
+			client_reference_id: `${info.userId}--${booking.id}`,
 			mode: "subscription",
 		};
 		return sessionConfig;
