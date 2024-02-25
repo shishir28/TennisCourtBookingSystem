@@ -24,7 +24,7 @@ export class TennisCourtController {
 
 	getAllCourts(_: express.Request, response: express.Response) {
 		this.tennisCourtService
-			.getAllTennisCourts()
+			.getAllTennisCourtsAndAvailability()
 			.then((tennisCourts: TennisCourt[]) => {
 				let result = this.mapper.mapArray(
 					tennisCourts,

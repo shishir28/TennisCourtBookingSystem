@@ -1,6 +1,5 @@
 import { Component, Input } from "@angular/core";
 import { AvailabilityViewModel } from "../../models/tennisCourt.model";
-import { MatGridList, MatGridTile } from "@angular/material/grid-list";
 import { CheckoutService } from "../../stripe-checkout/checkout.service";
 @Component({
   selector: "app-booking-slot",
@@ -22,7 +21,7 @@ export class BookingSlotComponent {
     this.checkoutService
       .startCheckout(this.courtId, epochTimestampInSeconds)
       .subscribe(
-        (checkoutResponse) => {        
+        (checkoutResponse) => {
           this.checkoutService.redirectToCheckout(checkoutResponse);
         },
         (error) => {
@@ -37,6 +36,6 @@ export class BookingSlotComponent {
 
   getBackgroundColor(): string {
     // shade of red(#f44336) and shade of green(#009688)
-    return this.bookingStarted ? "#f44336" : "#009688";
+    return this.availability.isBlocked ? "#f44336" : "#009688";
   }
 }

@@ -35,7 +35,7 @@ export class StripeWebhooksController {
 			}
 			return response.status(200).json({ received: true });
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			logger.error(error);
 			return response.status(500).send("stripe checkout failed.");
 		}

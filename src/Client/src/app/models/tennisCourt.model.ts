@@ -5,14 +5,21 @@ export interface Booking {
   startTime: string;
   endTime: string;
   date: string;
+  status: string;
+}
+export interface CompositeDate {
+  dateValue: Date;
+  isBlocked: Boolean;
 }
 
 export interface Availability {
-  [day: string]: Date[];
+  [day: string]: CompositeDate[];
 }
+
 export interface AvailabilityViewModel {
   epochTimestampInSeconds: number;
   timeInString: string;
+  isBlocked: Boolean;
 }
 
 export interface TennisCourt {

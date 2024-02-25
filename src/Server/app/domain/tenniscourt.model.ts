@@ -22,9 +22,15 @@ export class Booking {
 	@AutoMap()
 	status: string;
 }
+export class CompositeDate {
+	@AutoMap()
+	dateValue: Date;
+	@AutoMap()
+	isBlocked: Boolean;
+}
 
 export class Availability {
-	[day: string]: Date[];
+	[day: string]: CompositeDate[];
 }
 
 export class TennisCourt {

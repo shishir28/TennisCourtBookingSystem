@@ -14,9 +14,15 @@ export class BookingViewModel {
 	@AutoMap()
 	date: Date;
 }
+export class CompositeDateViewModel {
+	@AutoMap()
+	dateValue: Date;
+	@AutoMap()
+	isBlocked: Boolean;
+}
 
 export class AvailabilityViewModel {
-	[day: string]: Date[];
+	[day: string]: CompositeDateViewModel[];
 }
 
 export class TennisCourtViewModel {
